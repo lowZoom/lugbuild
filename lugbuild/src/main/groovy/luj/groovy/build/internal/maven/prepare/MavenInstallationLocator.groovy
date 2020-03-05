@@ -1,4 +1,4 @@
-package luj.build.internal.maven.prepare
+package luj.groovy.build.internal.maven.prepare
 
 import java.nio.file.Files
 import java.nio.file.Path

@@ -1,4 +1,4 @@
-package luj.build.api.maven;
+package luj.groovy.build.api.maven;
 
 import java.nio.file.Path;
 

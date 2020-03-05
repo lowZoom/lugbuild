@@ -1,7 +1,7 @@
-package luj.build.internal.maven.prepare
+package luj.groovy.build.internal.maven.prepare
 
-import luj.build.api.maven.Maven
-import luj.build.internal.maven.MavenBinImpl
+import luj.groovy.build.api.maven.Maven
+import luj.groovy.build.internal.maven.MavenBinImpl
 
 import java.nio.file.Path
 

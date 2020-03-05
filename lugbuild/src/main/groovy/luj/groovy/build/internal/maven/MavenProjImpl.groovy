@@ -1,6 +1,6 @@
-package luj.build.internal.maven
+package luj.groovy.build.internal.maven
 
-import luj.build.api.maven.Maven
+import luj.groovy.build.api.maven.Maven
 
 import java.nio.file.Path
 
