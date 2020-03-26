@@ -1,9 +1,11 @@
 package luj.groovy.build.internal.maven
 
+import groovy.transform.PackageScope
 import luj.groovy.build.api.maven.Maven
 
 import java.nio.file.Path
 
+@PackageScope
 class MavenProjImpl implements Maven.Project {
 
   MavenProjImpl(Path mvnPath, Path projPath) {
@@ -13,9 +15,19 @@ class MavenProjImpl implements Maven.Project {
 
   @Override
   void phase(String phase) {
-    "$_mvnPath -e $phase"
-        .execute(null as List, _projPath.toFile())
-        .waitForProcessOutput(System.out, System.err)
+    exec("$_mvnPath -e $phase", System.out)
+  }
+
+  @Override
+  String eval(String expression) {
+    def out = new ByteArrayOutputStream()
+    exec("$_mvnPath help:evaluate -Dexpression=$expression -q -DforceStdout", out)
+    return out.toString()
+  }
+
+  private void exec(String cmd, OutputStream out) {
+    Process proc = cmd.execute(null as List, _projPath.toFile())
+    proc.waitForProcessOutput(out, System.err)
   }
 
   private final Path _mvnPath

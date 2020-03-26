@@ -23,5 +23,7 @@ public interface Maven {
   interface Project {
 
     void phase(String phase);
+
+    String eval(String expression);
   }
 }
