@@ -1,9 +1,12 @@
 package luj.groovy.build.internal.maven.prepare
 
+import groovy.transform.PackageScope
+import luj.groovy.build.internal.common.LocatePathWalker
+
 import java.nio.file.Files
 import java.nio.file.Path
-import java.util.stream.Stream
 
+@PackageScope
 class MavenInstallationLocator {
 
   MavenInstallationLocator(Path startPath, String version) {
@@ -12,18 +15,16 @@ class MavenInstallationLocator {
   }
 
   Path locate() {
-    Stream<Path> walker = Files.walk(_startPath)
-
-    Path binPath = walker.parallel()
-        .filter { it.getFileName().toString() == 'mvn.cmd' }
-        .map { new Tuple2<>(it, getVersion(it)) }
-        .filter { it.second == _version }
-        .map { it.first }
-        .findAny()
-        .orElse(null)
-
-    walker.close()
-    return binPath
+    return new LocatePathWalker(_startPath).walk {
+      it.parallel()
+          .filter { Files.isRegularFile(it) }
+          .filter { it.getFileName().toString() == 'mvn.cmd' }
+          .map { new Tuple2<>(it, getVersion(it)) }
+          .filter { it.second == _version }
+          .map { it.first }
+          .findAny()
+          .orElse(null)
+    }
   }
 
   private String getVersion(Path mvnPath) {

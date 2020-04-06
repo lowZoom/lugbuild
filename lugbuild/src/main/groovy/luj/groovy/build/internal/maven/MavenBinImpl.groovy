@@ -1,6 +1,7 @@
 package luj.groovy.build.internal.maven
 
 import luj.groovy.build.api.maven.Maven
+import luj.groovy.build.api.maven.Project
 
 import java.nio.file.Path
 
@@ -11,7 +12,7 @@ class MavenBinImpl implements Maven.Bin {
   }
 
   @Override
-  Maven.Project project(Path path) {
+  Project project(Path path) {
     return new MavenProjImpl(_mvnPath, path)
   }
 

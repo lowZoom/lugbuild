@@ -1,12 +1,12 @@
 package luj.groovy.build.internal.maven
 
 import groovy.transform.PackageScope
-import luj.groovy.build.api.maven.Maven
+import luj.groovy.build.api.maven.Project
 
 import java.nio.file.Path
 
 @PackageScope
-class MavenProjImpl implements Maven.Project {
+class MavenProjImpl implements Project {
 
   MavenProjImpl(Path mvnPath, Path projPath) {
     _mvnPath = mvnPath
