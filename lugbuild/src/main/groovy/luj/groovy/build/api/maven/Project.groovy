@@ -1,8 +1,12 @@
 package luj.groovy.build.api.maven
 
+import java.nio.file.Path
+
 interface Project {
 
-  void phase(String phase)
+  int phase(String phase)
 
   String eval(String expression)
+
+  Path path()
 }

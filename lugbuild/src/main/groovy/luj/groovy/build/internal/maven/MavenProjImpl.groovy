@@ -14,8 +14,8 @@ class MavenProjImpl implements Project {
   }
 
   @Override
-  void phase(String phase) {
-    exec("$_mvnPath -e $phase", System.out)
+  int phase(String phase) {
+    return exec("$_mvnPath -e $phase", System.out)
   }
 
   @Override
@@ -25,9 +25,15 @@ class MavenProjImpl implements Project {
     return out.toString()
   }
 
-  private void exec(String cmd, OutputStream out) {
+  @Override
+  Path path() {
+    return _projPath
+  }
+
+  private int exec(String cmd, OutputStream out) {
     Process proc = cmd.execute(null as List, _projPath.toFile())
     proc.waitForProcessOutput(out, System.err)
+    return proc.exitValue()
   }
 
   private final Path _mvnPath
