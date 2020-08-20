@@ -5,22 +5,21 @@ import luj.groovy.build.internal.maven.MavenBinImpl
 
 import java.nio.file.Path
 
-//test
-class MavenPrepareImpl implements Maven.Preparer {
+class MavenPrepareImpl implements Maven {
 
   @Override
-  Maven.Preparer version(String version) {
+  Maven version(String version) {
     return this
   }
 
   @Override
-  Maven.Preparer locate(Path startPath) {
+  Maven locate(Path startPath) {
     _locatePath = startPath
     return this
   }
 
   @Override
-  Maven.Preparer downloadIfAbsent() {
+  Maven downloadIfAbsent() {
     return this
   }
 

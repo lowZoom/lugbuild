@@ -7,6 +7,10 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.stream.Stream
 
+/**
+ * @see luj.ava.file.path.PathX#walk(java.util.function.Function)
+ */
+@Deprecated
 class LocatePathWalker {
 
   LocatePathWalker(Path path) {

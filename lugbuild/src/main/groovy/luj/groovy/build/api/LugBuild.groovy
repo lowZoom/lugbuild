@@ -5,7 +5,7 @@ import luj.groovy.build.internal.maven.prepare.MavenPrepareImpl
 
 enum LugBuild {
 
-  static Maven.Preparer maven() {
+  static Maven maven() {
     return new MavenPrepareImpl()
   }
 }

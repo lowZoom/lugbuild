@@ -4,25 +4,13 @@ import java.nio.file.Path
 
 interface Maven {
 
-//  Maven version(String version)
-//
-//  Maven locate(Path startPath)
-//
-//  Maven downloadIfAbsent()
-//
-//  Bin bin()
+  Maven version(String version)
 
-  @Deprecated
-  interface Preparer {
+  Maven locate(Path startPath)
 
-    Preparer version(String version)
+  Maven downloadIfAbsent()
 
-    Preparer locate(Path startPath)
-
-    Preparer downloadIfAbsent()
-
-    Bin bin()
-  }
+  Bin bin()
 
   interface Bin {
 
