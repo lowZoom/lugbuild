@@ -6,9 +6,9 @@ import luj.groovy.build.api.maven.Project
 import java.nio.file.Path
 
 @PackageScope
-class MavenProjImpl implements Project {
+class ProjectImpl implements Project {
 
-  MavenProjImpl(Path mvnPath, Path projPath) {
+  ProjectImpl(Path mvnPath, Path projPath) {
     _mvnPath = mvnPath
     _projPath = projPath
   }

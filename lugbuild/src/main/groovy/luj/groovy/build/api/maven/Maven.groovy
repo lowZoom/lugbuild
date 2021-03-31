@@ -15,5 +15,7 @@ interface Maven {
   interface Bin {
 
     Project project(Path path)
+
+    Plugin plugin(String name)
   }
 }
