@@ -13,7 +13,7 @@ class ProcessOutputGetter {
 
   String getOutput() {
     List envList = _env ? _env.collect { k, v -> "$k=$v" } : null
-    Process proc = _cmd.execute(envList, _execDir.toFile())
+    Process proc = _cmd.execute(envList, _execDir?.toFile())
 
     def out = new ByteArrayOutputStream()
     proc.waitForProcessOutput(out, System.err)
