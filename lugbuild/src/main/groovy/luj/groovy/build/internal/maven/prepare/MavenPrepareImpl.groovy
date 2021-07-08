@@ -25,8 +25,8 @@ class MavenPrepareImpl implements Maven {
 
   @Override
   Maven.Bin bin() {
-    Path binPath = new MavenInstallationLocator(_locatePath, '3.5.4').locate()
-    return new MavenBinImpl(binPath)
+    def mvn = new MavenInstallationLocator(_locatePath, '3.5.4').locateV2()
+    return new MavenBinImpl(mvn)
   }
 
   private Path _locatePath

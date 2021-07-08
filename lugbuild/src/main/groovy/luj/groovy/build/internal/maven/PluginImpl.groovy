@@ -13,10 +13,12 @@ class PluginImpl implements Plugin {
     def goal = new PluginGoalImpl()
     goal._name = name
     goal._plugin = this
+    goal._projPath = _projPath
     return goal
   }
 
   String _name
 
-  Path _mvnPath
+  List<String> _mvnCmd
+  Path _projPath
 }

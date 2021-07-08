@@ -4,7 +4,13 @@ interface Plugin {
 
   interface Goal {
 
-    int exec(Map<String, ?> param)
+    /**
+     * @see #run
+     */
+    @Deprecated
+    int exec(Map<String, ?> userProp)
+
+    int run(Map<String, ?> userProp)
   }
 
   Goal goal(String name)

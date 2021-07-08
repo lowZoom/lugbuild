@@ -8,22 +8,23 @@ import java.nio.file.Path
 
 class MavenBinImpl implements Maven.Bin {
 
-  MavenBinImpl(Path mvnPath) {
-    _mvnPath = mvnPath
+  MavenBinImpl(List<String> mvnCmd) {
+    _mvnCmd = mvnCmd
   }
 
   @Override
   Project project(Path path) {
-    return new ProjectImpl(_mvnPath, path)
+    return new ProjectImpl(_mvnCmd, path)
   }
 
   @Override
   Plugin plugin(String name) {
     def plugin = new PluginImpl()
     plugin._name = name
-    plugin._mvnPath = _mvnPath
+    plugin._mvnCmd = _mvnCmd
+    plugin._projPath = null
     return plugin
   }
 
-  private final Path _mvnPath
+  private final List<String> _mvnCmd
 }

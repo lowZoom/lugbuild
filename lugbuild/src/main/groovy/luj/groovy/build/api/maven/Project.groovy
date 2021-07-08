@@ -6,6 +6,8 @@ interface Project {
 
   int phase(String phase)
 
+  Plugin plugin(String name)
+
   String eval(String expression)
 
   Path path()
