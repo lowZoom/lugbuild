@@ -9,9 +9,13 @@ interface Docker {
 
   void run(String image, List<String> options)
 
+  void run(String image, List<String> command, List<String> options)
+
   void exec(String container, List<String> command)
 
   void rm(List<String> containers, List<String> options)
 
   ContainerCmd container()
+
+  ImageCmd image()
 }
