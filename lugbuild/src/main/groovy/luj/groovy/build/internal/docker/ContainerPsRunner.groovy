@@ -2,30 +2,28 @@ package luj.groovy.build.internal.docker
 
 import groovy.transform.PackageScope
 import luj.groovy.build.internal.common.ProcessOutputGetter
+import luj.groovy.build.internal.docker.format.FormatKeyCombiner
 
 import java.util.stream.Collectors
 
 @PackageScope
-class PsRunner {
+class ContainerPsRunner {
 
-  PsRunner(List<String> columnList) {
+  ContainerPsRunner(List<String> columnList) {
     _columnList = columnList
   }
 
-  List run() {
+  List<Map> run() {
     String format = _columnList.stream()
         .map { "{{.${it}}}" }
         .collect(Collectors.joining('\t'))
 
     String out = ProcessOutputGetter.create(['docker', 'ps', '--format', format]).getOutput()
-    return Arrays.stream(out.split('\n'))
-        .map { combineHeader(it) }
-        .collect(Collectors.toList())
-  }
+//    print(out)
 
-  private Map<String, String> combineHeader(String rowStr) {
-    List rowList = rowStr.split('\t').toList()
-    return (0..<_columnList.size()).collectEntries { [_columnList[it], rowList[it]] }
+    return Arrays.stream(out.split('\n'))
+        .map { new FormatKeyCombiner(_columnList, it).combine() }
+        .collect(Collectors.toList())
   }
 
   private final List<String> _columnList

@@ -6,7 +6,6 @@ import java.nio.file.Path
 class ProcessOutputGetter {
 
   static ProcessOutputGetter create(List cmd) {
-//    println(cmd)
     return new ProcessOutputGetter(cmd, null, [:])
   }
 

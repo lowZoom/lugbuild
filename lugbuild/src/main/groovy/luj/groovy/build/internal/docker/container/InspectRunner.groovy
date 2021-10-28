@@ -14,7 +14,7 @@ class InspectRunner {
     _includeKeys = includeKeys
   }
 
-  List<Map<String, Object>> run() {
+  List<Map> run() {
     def exec = { List cmd -> ProcessOutputGetter.create(cmd).getOutput() }
     def inspect = { List cmd -> exec(ContainerImpl.CMD + ['inspect'] + cmd) }
 

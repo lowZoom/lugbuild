@@ -13,6 +13,11 @@ class ImageImpl implements ImageCmd {
   }
 
   @Override
+  void tag(String source, String target) {
+    execImage(['tag'] + [source, target])
+  }
+
+  @Override
   void prune(List<String> options) {
     execImage(['prune'] + options)
   }

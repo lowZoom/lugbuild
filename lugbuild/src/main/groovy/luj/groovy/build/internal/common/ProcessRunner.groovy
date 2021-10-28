@@ -17,8 +17,12 @@ class ProcessRunner {
 
   void run() {
     List envList = _env ? _env.collect { k, v -> "$k=$v" } : null
+//    println(_cmd)
+
     Process proc = _cmd.collect { it.toString() }.execute(envList, _execDir?.toFile())
     proc.waitForProcessOutput(_out, System.err)
+
+    assert proc.exitValue() == 0
   }
 
   private final List _cmd

@@ -18,4 +18,6 @@ interface Docker {
   ContainerCmd container()
 
   ImageCmd image()
+
+  VolumeCmd volume()
 }

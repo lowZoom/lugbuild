@@ -3,14 +3,16 @@ package luj.groovy.build.internal.docker
 import luj.groovy.build.api.docker.ContainerCmd
 import luj.groovy.build.api.docker.Docker
 import luj.groovy.build.api.docker.ImageCmd
+import luj.groovy.build.api.docker.VolumeCmd
 import luj.groovy.build.internal.docker.container.ContainerImpl
 import luj.groovy.build.internal.docker.image.ImageImpl
+import luj.groovy.build.internal.docker.volume.VolumeImpl
 
 class DockerImpl implements Docker {
 
   @Override
   List<Map<String, String>> ps(List<String> columns) {
-    return new PsRunner(columns).run()
+    return new ContainerPsRunner(columns).run()
   }
 
   @Override
@@ -41,5 +43,10 @@ class DockerImpl implements Docker {
   @Override
   ImageCmd image() {
     return new ImageImpl()
+  }
+
+  @Override
+  VolumeCmd volume() {
+    return new VolumeImpl()
   }
 }
