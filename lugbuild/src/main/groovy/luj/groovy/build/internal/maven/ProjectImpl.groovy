@@ -41,7 +41,11 @@ class ProjectImpl implements Project {
   }
 
   private int exec(List cmd, OutputStream out) {
-    Process proc = cmd.join(' ').execute(null as List, _projPath.toFile())
+    def builder = new ProcessBuilder(cmd)
+    builder.directory(_projPath.toFile())
+    builder.environment()['MAVEN_OPTS'] = '-Dfile.encoding=UTF8'
+
+    Process proc = builder.start()
     proc.waitForProcessOutput(out, System.err)
     return proc.exitValue()
   }

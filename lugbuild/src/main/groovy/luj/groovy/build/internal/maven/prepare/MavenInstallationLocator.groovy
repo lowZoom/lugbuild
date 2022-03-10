@@ -44,8 +44,8 @@ class MavenInstallationLocator {
           .map { isWin ? [it] : ['bash', it] }
           .map { [it, getVersion(it)] }
           .filter { it[1] == _version }
-          .map { it[0] as List }
           .findAny()
+          .map { it[0] as List }
           .orElseThrow { new IllegalStateException("没有发现maven程序：${_version}") }
     }
   }
