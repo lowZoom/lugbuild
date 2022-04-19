@@ -12,7 +12,7 @@ class DockerImpl implements Docker {
 
   @Override
   List<Map<String, String>> ps(List<String> columns) {
-    return new ContainerPsRunner(columns).run()
+    return new ContainerPsRunner(['docker', 'ps'], columns, []).run()
   }
 
   @Override

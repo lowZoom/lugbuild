@@ -21,7 +21,7 @@ class LsRunner {
 
     def eval = { List cmd -> ProcessOutputGetter.create(cmd).getOutput() }
     String out = eval(VolumeImpl.CMD + ['ls', '--format', format])
-    print(out)
+//    print(out)
 
     return Arrays.stream(out.split('\n'))
         .map { new FormatKeyCombiner(_columnList, it).combine() }
