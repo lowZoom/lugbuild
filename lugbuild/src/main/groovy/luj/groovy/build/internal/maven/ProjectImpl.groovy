@@ -16,7 +16,8 @@ class ProjectImpl implements Project {
 
   @Override
   int phase(String phase) {
-    return exec(_mvnCmd + ['-e', phase], System.out)
+    List<String> phaseCmd = phase.trim().split('\\s+').toList()
+    return exec(_mvnCmd + ['-e'] + phaseCmd, System.out)
   }
 
   @Override
@@ -41,7 +42,7 @@ class ProjectImpl implements Project {
   }
 
   private int exec(List cmd, OutputStream out) {
-    def builder = new ProcessBuilder(cmd)
+    def builder = new ProcessBuilder(cmd.collect { it.toString() })
     builder.directory(_projPath.toFile())
     builder.environment()['MAVEN_OPTS'] = '-Dfile.encoding=UTF8'
 
