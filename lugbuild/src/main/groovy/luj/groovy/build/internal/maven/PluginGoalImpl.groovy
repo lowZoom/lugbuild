@@ -2,6 +2,7 @@ package luj.groovy.build.internal.maven
 
 import groovy.transform.PackageScope
 import luj.groovy.build.api.maven.Plugin
+import luj.groovy.build.internal.maven.exec.MavenCommandExecutor
 
 import java.nio.file.Path
 
@@ -18,10 +19,7 @@ class PluginGoalImpl implements Plugin.Goal {
     List<String> cmd = makeCmd(userProp)
     println("> ${cmd}")
 
-    Process proc = cmd.execute(null as List, _projPath?.toFile())
-    proc.waitForProcessOutput(System.out, System.err)
-
-    return proc.exitValue()
+    return new MavenCommandExecutor(cmd, _projPath, System.out).exec()
   }
 
   private List<String> makeCmd(Map<String, ?> param) {

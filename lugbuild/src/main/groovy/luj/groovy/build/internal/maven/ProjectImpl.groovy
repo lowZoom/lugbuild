@@ -3,6 +3,7 @@ package luj.groovy.build.internal.maven
 import groovy.transform.PackageScope
 import luj.groovy.build.api.maven.Plugin
 import luj.groovy.build.api.maven.Project
+import luj.groovy.build.internal.maven.exec.MavenCommandExecutor
 
 import java.nio.file.Path
 
@@ -42,13 +43,7 @@ class ProjectImpl implements Project {
   }
 
   private int exec(List cmd, OutputStream out) {
-    def builder = new ProcessBuilder(cmd.collect { it.toString() })
-    builder.directory(_projPath.toFile())
-    builder.environment()['MAVEN_OPTS'] = '-Dfile.encoding=UTF8'
-
-    Process proc = builder.start()
-    proc.waitForProcessOutput(out, System.err)
-    return proc.exitValue()
+    return new MavenCommandExecutor(cmd, _projPath, out).exec()
   }
 
   private final List<String> _mvnCmd
