@@ -16,13 +16,22 @@ class ProcessRunner {
   }
 
   void run() {
-    List envList = _env ? _env.collect { k, v -> "$k=$v" } : null
+    assert runAndReturn() == 0
+  }
+
+  int runAndReturn() {
+    def builder = new ProcessBuilder(_cmd.collect { it.toString() })
+    builder.environment().putAll(_env)
+
+    if (_execDir) {
+      builder.directory(_execDir.toFile())
+    }
+
+    Process proc = builder.start()
 //    println(_cmd)
 
-    Process proc = _cmd.collect { it.toString() }.execute(envList, _execDir?.toFile())
     proc.waitForProcessOutput(_out, System.err)
-
-    assert proc.exitValue() == 0
+    return proc.exitValue()
   }
 
   private final List _cmd

@@ -1,5 +1,8 @@
 package luj.groovy.build.internal.maven.exec
 
+import luj.groovy.build.internal.common.ProcessRunner
+
+import java.nio.charset.Charset
 import java.nio.file.Path
 
 class MavenCommandExecutor {
@@ -11,16 +14,8 @@ class MavenCommandExecutor {
   }
 
   int exec() {
-    def builder = new ProcessBuilder(_cmd.collect { it.toString() })
-    builder.environment()['MAVEN_OPTS'] = '-Dfile.encoding=UTF8'
-
-    if (_dir) {
-      builder.directory(_dir.toFile())
-    }
-
-    Process proc = builder.start()
-    proc.waitForProcessOutput(_out, System.err)
-    return proc.exitValue()
+    def env = [MAVEN_OPTS: '-Dfile.encoding=' + Charset.defaultCharset().name()]
+    return new ProcessRunner(_cmd, _dir, env, _out).runAndReturn()
   }
 
   private final List _cmd
