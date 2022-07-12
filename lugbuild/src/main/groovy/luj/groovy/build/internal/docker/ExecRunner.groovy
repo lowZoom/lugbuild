@@ -12,7 +12,7 @@ class ExecRunner {
   }
 
   void run() {
-    ProcessRunner.create(['docker', 'exec'] + [_container] + _cmd).run()
+    ProcessRunner.get(['docker', 'exec', _container] + _cmd).run()
   }
 
   private final String _container

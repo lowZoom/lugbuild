@@ -4,7 +4,15 @@ import java.nio.file.Path
 
 class ProcessRunner {
 
+  /**
+   * @see #get
+   */
+  @Deprecated
   static ProcessRunner create(List cmd) {
+    return get(cmd)
+  }
+
+  static ProcessRunner get(List cmd) {
     return new ProcessRunner(cmd, null, [:], System.out)
   }
 
@@ -16,6 +24,7 @@ class ProcessRunner {
   }
 
   void run() {
+//    println(_cmd)
     assert runAndReturn() == 0
   }
 
@@ -28,8 +37,6 @@ class ProcessRunner {
     }
 
     Process proc = builder.start()
-//    println(_cmd)
-
     proc.waitForProcessOutput(_out, System.err)
     return proc.exitValue()
   }

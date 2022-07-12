@@ -5,7 +5,15 @@ import java.nio.file.Path
 
 class ProcessOutputGetter {
 
+  /**
+   * @see #get
+   */
+  @Deprecated
   static ProcessOutputGetter create(List cmd) {
+    return get(cmd)
+  }
+
+  static ProcessOutputGetter get(List cmd) {
     return new ProcessOutputGetter(cmd, null, [:])
   }
 

@@ -13,6 +13,8 @@ interface Docker {
 
   void exec(String container, List<String> command)
 
+  void stop(List<String> containers, List<String> options)
+
   void rm(List<String> containers, List<String> options)
 
   ContainerCmd container()

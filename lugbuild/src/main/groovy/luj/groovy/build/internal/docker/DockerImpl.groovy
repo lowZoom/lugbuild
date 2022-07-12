@@ -31,6 +31,11 @@ class DockerImpl implements Docker {
   }
 
   @Override
+  void stop(List<String> containers, List<String> options) {
+    new StopRunner(containers, options).run()
+  }
+
+  @Override
   void rm(List<String> containers, List<String> options) {
     new RmRunner(containers, options).run()
   }
