@@ -25,19 +25,18 @@ class ProcessRunner {
 
   void run() {
 //    println(_cmd)
-    assert runAndReturn() == 0
+    assert runAndReturn(System.err) == 0
   }
 
-  int runAndReturn() {
+  int runAndReturn(OutputStream err) {
     def builder = new ProcessBuilder(_cmd.collect { it.toString() })
     builder.environment().putAll(_env)
-
     if (_execDir) {
       builder.directory(_execDir.toFile())
     }
 
     Process proc = builder.start()
-    proc.waitForProcessOutput(_out, System.err)
+    proc.waitForProcessOutput(_out, err)
     return proc.exitValue()
   }
 

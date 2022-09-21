@@ -15,7 +15,7 @@ class MavenCommandExecutor {
 
   int exec() {
     def env = [MAVEN_OPTS: '-Dfile.encoding=' + Charset.defaultCharset().name()]
-    return new ProcessRunner(_cmd, _dir, env, _out).runAndReturn()
+    return new ProcessRunner(_cmd, _dir, env, _out).runAndReturn(System.err)
   }
 
   private final List _cmd

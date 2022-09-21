@@ -41,6 +41,11 @@ class DockerImpl implements Docker {
   }
 
   @Override
+  void login(List<String> options) {
+    new LoginRunner(options).run()
+  }
+
+  @Override
   ContainerCmd container() {
     return new ContainerImpl()
   }

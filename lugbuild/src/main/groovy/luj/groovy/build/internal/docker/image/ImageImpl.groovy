@@ -14,7 +14,17 @@ class ImageImpl implements ImageCmd {
 
   @Override
   void tag(String source, String target) {
-    execImage(['tag'] + [source, target])
+    execImage(['tag', source, target])
+  }
+
+  @Override
+  void push(String image) {
+    execImage(['push', image])
+  }
+
+  @Override
+  void pull(String image) {
+    execImage(['pull', image])
   }
 
   @Override
@@ -23,6 +33,6 @@ class ImageImpl implements ImageCmd {
   }
 
   private void execImage(List cmd) {
-    ProcessRunner.create(CMD + cmd).run()
+    ProcessRunner.get(CMD + cmd).run()
   }
 }
