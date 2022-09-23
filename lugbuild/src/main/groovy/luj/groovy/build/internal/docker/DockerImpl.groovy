@@ -41,8 +41,8 @@ class DockerImpl implements Docker {
   }
 
   @Override
-  void login(List<String> options) {
-    new LoginRunner(options).run()
+  void login(String server, List<String> options) {
+    new LoginRunner(server, options).run()
   }
 
   @Override

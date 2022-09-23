@@ -17,7 +17,7 @@ interface Docker {
 
   void rm(List<String> containers, List<String> options)
 
-  void login(List<String> options)
+  void login(String server, List<String> options)
 
   ContainerCmd container()
 
