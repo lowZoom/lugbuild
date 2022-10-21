@@ -18,6 +18,6 @@ class VolumeImpl implements VolumeCmd {
   }
 
   private void execVolume(List cmd) {
-    ProcessRunner.create(CMD + cmd).run()
+    ProcessRunner.get(CMD + cmd).run()
   }
 }

@@ -13,7 +13,7 @@ class RunRunner {
   }
 
   void run() {
-    ProcessRunner.create(['docker', 'run'] + _options + [_image] + _command).run()
+    ProcessRunner.get(['docker', 'run'] + _options + [_image] + _command).run()
   }
 
   private final String _image

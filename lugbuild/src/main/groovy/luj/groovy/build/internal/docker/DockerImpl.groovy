@@ -3,9 +3,11 @@ package luj.groovy.build.internal.docker
 import luj.groovy.build.api.docker.ContainerCmd
 import luj.groovy.build.api.docker.Docker
 import luj.groovy.build.api.docker.ImageCmd
+import luj.groovy.build.api.docker.SystemCmd
 import luj.groovy.build.api.docker.VolumeCmd
 import luj.groovy.build.internal.docker.container.ContainerImpl
 import luj.groovy.build.internal.docker.image.ImageImpl
+import luj.groovy.build.internal.docker.system.SystemImpl
 import luj.groovy.build.internal.docker.volume.VolumeImpl
 
 class DockerImpl implements Docker {
@@ -58,5 +60,10 @@ class DockerImpl implements Docker {
   @Override
   VolumeCmd volume() {
     return new VolumeImpl()
+  }
+
+  @Override
+  SystemCmd system() {
+    return new SystemImpl()
   }
 }

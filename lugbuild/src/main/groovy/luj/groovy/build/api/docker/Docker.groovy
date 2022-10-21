@@ -4,6 +4,7 @@ interface Docker {
 
   /**
    * @param columns https://docs.docker.com/engine/reference/commandline/ps/#formatting
+   * @see luj.groovy.build.api.docker.ContainerCmd#ls
    */
   List<Map<String, String>> ps(List<String> columns)
 
@@ -24,4 +25,6 @@ interface Docker {
   ImageCmd image()
 
   VolumeCmd volume()
+
+  SystemCmd system()
 }

@@ -19,7 +19,7 @@ class LsRunner {
         .map { "{{.${it}}}" }
         .collect(Collectors.joining('\t'))
 
-    def eval = { List cmd -> ProcessOutputGetter.create(cmd).getOutput() }
+    def eval = { List cmd -> ProcessOutputGetter.get(cmd).getOutput() }
     String out = eval(VolumeImpl.CMD + ['ls', '--format', format])
 //    print(out)
 
