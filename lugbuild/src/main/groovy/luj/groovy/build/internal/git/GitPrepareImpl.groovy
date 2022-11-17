@@ -8,7 +8,7 @@ class GitPrepareImpl implements Git {
 
   @Override
   Git locate(Path startPath) {
-    _bin._path = startPath
+    _bin._binPath = startPath
     return this
   }
 
