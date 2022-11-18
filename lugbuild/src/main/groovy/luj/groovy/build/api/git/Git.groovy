@@ -6,6 +6,8 @@ interface Git {
 
   Git locate(Path startPath)
 
+  Git bashHome(Path homePath)
+
   Bin bin()
 
   interface Bin {

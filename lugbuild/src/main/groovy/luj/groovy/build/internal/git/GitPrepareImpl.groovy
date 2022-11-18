@@ -13,6 +13,12 @@ class GitPrepareImpl implements Git {
   }
 
   @Override
+  Git bashHome(Path homePath) {
+    _bin._homePath = homePath
+    return this
+  }
+
+  @Override
   Bin bin() {
     return _bin
   }

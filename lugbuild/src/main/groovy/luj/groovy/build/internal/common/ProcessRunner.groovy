@@ -4,14 +4,6 @@ import java.nio.file.Path
 
 class ProcessRunner {
 
-  /**
-   * @see #get
-   */
-  @Deprecated
-  static ProcessRunner create(List cmd) {
-    return get(cmd)
-  }
-
   static ProcessRunner get(List cmd) {
     return new ProcessRunner(cmd, null, [:], System.out)
   }

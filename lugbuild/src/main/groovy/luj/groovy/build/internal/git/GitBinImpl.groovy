@@ -15,6 +15,7 @@ class GitBinImpl implements Git.Bin {
     def proj = new ProjectImpl()
     proj._binCmd = [_binPath]
     proj._projPath = getProjPath(PathX.of(path)).asPath()
+    proj._homePath = _homePath
     return proj
   }
 
@@ -30,4 +31,6 @@ class GitBinImpl implements Git.Bin {
   }
 
   Path _binPath
+
+  Path _homePath
 }
